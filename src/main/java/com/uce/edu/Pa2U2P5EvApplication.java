@@ -1,5 +1,6 @@
 package com.uce.edu;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +9,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.repository.IAlumnoRepository;
+import com.uce.edu.repository.IEmpleadoRepository;
 import com.uce.edu.repository.modelo.Alumno;
+import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Empleado;
 import com.uce.edu.repository.modelo.Estudiante;
 import com.uce.edu.service.IAlumnoService;
+import com.uce.edu.service.ICiudadanoService;
+import com.uce.edu.service.IEmpleadoService;
 import com.uce.edu.service.IEstudianteService;
 
 @SpringBootApplication
 public class Pa2U2P5EvApplication implements CommandLineRunner {
 	
 	@Autowired
-	private IEstudianteService iEstudianteService;
+	private IEmpleadoService iEmpleadoService;
 	
 	@Autowired
-	private IAlumnoService iAlumnoService;
+	private ICiudadanoService iCiudadanoService;
 	
 	
 	public static void main(String[] args) {
@@ -31,48 +37,33 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
+		Ciudadano ciudadano = new Ciudadano();
 		
-		//Creamos el nuevo Estudiante 
-		Estudiante estudiante = new Estudiante();
-		estudiante.setApellido("Vinueza");
-		estudiante.setCedula("1751674027");
-		estudiante.setFechaNacimiento(LocalDateTime.of(2000, 01, 12, 3, 0));
-		estudiante.setNombre("Edlith");
+		ciudadano.setNombre("Edlith");
+		ciudadano.setApellido("Vinueza");
 		
-		//Guardar Estudiante 
-		//this.iEstudianteService.guardar(estudiante);
+		this.iCiudadanoService.guardar(ciudadano);
 		
-		//Buscar Estudiante 
-		Estudiante estudiante2 = this.iEstudianteService.buscar(2);
-		System.out.println(estudiante2);
+		Empleado empleado = new Empleado();
 		
-		estudiante2.setNombre("Actualizado");
-		//Actualizar Estudiante 
-		this.iEstudianteService.actualizar(estudiante2);
+		empleado.setSalario(new BigDecimal(7000));
+		empleado.setFehcaIngreso(LocalDateTime.now());
 		
-		//Eliminar Estudiante 
-		this.iEstudianteService.borrar(5);
+		Ciudadano ciudadano2 = new Ciudadano();
+		
+		ciudadano2= this.iCiudadanoService.selecionar(1);
+		empleado.setCiudadano(ciudadano2);
 		
 		
 		
-		//Creamos el nuevo Alummno 
 		
-		Alumno alumno = new Alumno();
-		alumno.setNombre("Alumno 1 ");
 		
-		//Guardamos Alumno 
-		this.iAlumnoService.guardar(alumno);
 		
-		//Buscar Alumno 
-		Alumno alumno2 = this.iAlumnoService.buscar(2);
-		//Actualizar Alumno
 		
-		alumno2.setNombre("Alumno Actualizado");
-		this.iAlumnoService.actualizar(alumno2);
 		
-		//Eliminar Alumno 
-		 
-		this.iAlumnoService.borrar(2);
+		
+		
+
 		
 	
 		
