@@ -11,9 +11,15 @@ import jakarta.transaction.Transactional;
 @Repository
 @Transactional
 public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
+
+	@Override
+	public Ciudadano seleccionar(Integer id) {
+		// TODO Auto-generated method stub
+		return this.entityManager.find(Ciudadano.class, id);
+	}
 
 	@Override
 	public void insertar(Ciudadano ciudadano) {
@@ -22,11 +28,18 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 	}
 
 	@Override
-	public Ciudadano selecionar(Integer id) {
+	public void actualizar(Ciudadano ciudadano) {
 		// TODO Auto-generated method stub
-		return this.entityManager.find(Ciudadano.class, id);
+		this.entityManager.merge(ciudadano);
+
 	}
-	
-	
+
+	@Override
+	public void eliminar(Integer id) {
+		// TODO Auto-generated method stub
+		Ciudadano ciudadano = this.seleccionar(id);
+		this.entityManager.remove(ciudadano);
+
+	}
 
 }
