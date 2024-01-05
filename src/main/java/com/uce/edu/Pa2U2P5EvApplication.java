@@ -31,17 +31,14 @@ import jakarta.persistence.Id;
 @SpringBootApplication
 public class Pa2U2P5EvApplication implements CommandLineRunner {
 
+	
 	@Autowired
 	private IHotelService iHotelService;
 	
-	@Autowired 
-	private ICiudadanoService iCiudadanoService;
-	
-	@Autowired 
-	private IEmpleadoService iEmpleadoService;
-	
+
 	@Autowired
 	private IHabitacionService iHabitacionService;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EvApplication.class, args);
@@ -51,52 +48,56 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Ciudadano c1 = new Ciudadano();
-		Empleado em1= new Empleado();
+		Hotel hotel1 = new Hotel();
+		hotel1.setDireccion("Av. America");
+		hotel1.setNombre("Hola Mundo");
 		
-		c1.setNombre("Juan");
-		c1.setApellido("Casas");
+		Habitacion habi1 = new Habitacion();
+		habi1.setClase("Economica");
+		habi1.setNumero("A1");
+		habi1.setHotel(hotel1);
 		
-		c1.setEmpleado(em1);
-			
-		em1.setFehcaIngreso(LocalDateTime.now());
-		em1.setSalario(new BigDecimal(2000));
+		Habitacion habi2 = new Habitacion();
+		habi2.setClase("Presidencial");
+		habi2.setNumero("A2");
+		habi2.setHotel(hotel1);
 		
-		em1.setCiudadano(c1);
+		List<Habitacion> habitaciones1 = new ArrayList<>();
+		habitaciones1.add(habi1);
+		habitaciones1.add(habi2);
 		
-		this.iCiudadanoService.guardar(c1);
+		hotel1.setHabitaciones(habitaciones1);
 		
-		c1.setNombre("Camilo");
-		this.iCiudadanoService.actualizar(c1);
+		this.iHotelService.guardar(hotel1);
 		
-		this.iEmpleadoService.borrar(9);
+		Hotel hotel2 = new Hotel();
 		
+		Habitacion habi3 = new Habitacion();
+		habi3.setClase("Economica");
+		habi3.setNumero("B1");
+		habi3.setHotel(hotel2);
 		
-		Ciudadano c2 = new Ciudadano();
-		Empleado em2= new Empleado();
+		Habitacion habi4 = new Habitacion();
+		habi4.setClase("Economica");
+		habi4.setNumero("A2");
+		habi4.setHotel(hotel2);
 		
-		em2.setFehcaIngreso(LocalDateTime.now());
-		em2.setSalario(new BigDecimal(450));
+		List<Habitacion> habitaciones2 = new ArrayList<>();
+		habitaciones2.add(habi3);
+		habitaciones2.add(habi4);
+				
 		
-		em2.setCiudadano(c2);
+		hotel2.setDireccion("Av. Florida");
+		hotel2.setNombre("Vista del Mar ");
+		hotel2.setHabitaciones(habitaciones2);
 		
-		c2.setNombre("Maria");
-		c2.setApellido("Cueva");
+		this.iHotelService.guardar(hotel2);
 		
-		c2.setEmpleado(em2);
+		this.iHabitacionService.buscar(5);
 		
-		this.iEmpleadoService.guardar(em2);
-		
-		this.iEmpleadoService.buscar(2);
-		
-		em2.setSalario(new BigDecimal(4500));
-		
-		this.iEmpleadoService.actualizar(em2);
-		
-		
-		
-		
-					
+		habi4.setNumero("B2");
+		this.iHabitacionService.actualizar(habi4);
+	
 
 	}
 
