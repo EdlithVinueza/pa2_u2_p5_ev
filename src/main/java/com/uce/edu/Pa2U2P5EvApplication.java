@@ -1,5 +1,6 @@
 package com.uce.edu;
 
+import java.awt.geom.Arc2D;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import com.uce.edu.service.IAlumnoService;
 import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.IEmpleadoService;
 import com.uce.edu.service.IEstudianteService;
+import com.uce.edu.service.IHabitacionService;
 import com.uce.edu.service.IHotelService;
 
 import jakarta.persistence.Id;
@@ -31,7 +33,15 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 
 	@Autowired
 	private IHotelService iHotelService;
-
+	
+	@Autowired 
+	private ICiudadanoService iCiudadanoService;
+	
+	@Autowired 
+	private IEmpleadoService iEmpleadoService;
+	
+	@Autowired
+	private IHabitacionService iHabitacionService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EvApplication.class, args);
@@ -41,27 +51,52 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Hotel hotel = new Hotel();
-		hotel.setDireccion("Colon");
-		hotel.setNombre("Marriot");
+		Ciudadano c1 = new Ciudadano();
+		Empleado em1= new Empleado();
 		
-		Habitacion habi1 = new Habitacion();
-		habi1.setClase("Economica");
-		habi1.setNumero("A1");
-		habi1.setHotel(hotel);
+		c1.setNombre("Juan");
+		c1.setApellido("Casas");
 		
-		Habitacion habi2 = new Habitacion();
-		habi2.setClase("Presidencial");
-		habi2.setNumero("A2");
-		habi2.setHotel(hotel);
+		c1.setEmpleado(em1);
+			
+		em1.setFehcaIngreso(LocalDateTime.now());
+		em1.setSalario(new BigDecimal(2000));
 		
-		List<Habitacion> habitaciones = new ArrayList<>();
-		habitaciones.add(habi1);
-		habitaciones.add(habi2);
+		em1.setCiudadano(c1);
 		
-		hotel.setHabitaciones(habitaciones);
+		this.iCiudadanoService.guardar(c1);
 		
-		this.iHotelService.guardar(hotel);
+		c1.setNombre("Camilo");
+		this.iCiudadanoService.actualizar(c1);
+		
+		this.iEmpleadoService.borrar(9);
+		
+		
+		Ciudadano c2 = new Ciudadano();
+		Empleado em2= new Empleado();
+		
+		em2.setFehcaIngreso(LocalDateTime.now());
+		em2.setSalario(new BigDecimal(450));
+		
+		em2.setCiudadano(c2);
+		
+		c2.setNombre("Maria");
+		c2.setApellido("Cueva");
+		
+		c2.setEmpleado(em2);
+		
+		this.iEmpleadoService.guardar(em2);
+		
+		this.iEmpleadoService.buscar(2);
+		
+		em2.setSalario(new BigDecimal(4500));
+		
+		this.iEmpleadoService.actualizar(em2);
+		
+		
+		
+		
+					
 
 	}
 
