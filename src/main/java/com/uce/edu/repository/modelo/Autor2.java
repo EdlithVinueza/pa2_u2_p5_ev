@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -28,6 +29,7 @@ public class Autor2 {
 	@Column(name = "auto_nacionalidad")
 	private String nacionalidad;
 	
+	@OneToMany(mappedBy = "autor2")
 	private List<AutorLibro>autoresLibros;
 
 	// SET y GET
@@ -62,5 +64,5 @@ public class Autor2 {
 	public void setAutoresLibros(List<AutorLibro> autoresLibros) {
 		this.autoresLibros = autoresLibros;
 	}
-
+	
 }

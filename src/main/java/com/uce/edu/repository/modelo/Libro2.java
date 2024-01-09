@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -32,6 +33,7 @@ public class Libro2 {
 	@Column(name = "libr_fecha_publicacion")
 	private LocalDateTime fechaPublicacion;
 	
+	@OneToMany(mappedBy = "libro2", cascade = CascadeType.ALL) //si quiero que la relaciones se inserten en cascada todos los autoresLibros
 	private List<AutorLibro> librosAutores;
 	
 	//SET y GET 
@@ -53,6 +55,11 @@ public class Libro2 {
 	public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
-
+	public List<AutorLibro> getLibrosAutores() {
+		return librosAutores;
+	}
+	public void setLibrosAutores(List<AutorLibro> librosAutores) {
+		this.librosAutores = librosAutores;
+	}
 	
 }
