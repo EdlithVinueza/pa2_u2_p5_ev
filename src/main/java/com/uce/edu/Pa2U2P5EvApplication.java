@@ -11,18 +11,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.IAlumnoRepository;
-import com.uce.edu.repository.IEmpleadoRepository;
-import com.uce.edu.repository.modelo.Alumno;
-import com.uce.edu.repository.modelo.Ciudadano;
-import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.repository.modelo.Estudiante;
+
 import com.uce.edu.repository.modelo.Habitacion;
 import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.service.IAlumnoService;
-import com.uce.edu.service.ICiudadanoService;
-import com.uce.edu.service.IEmpleadoService;
-import com.uce.edu.service.IEstudianteService;
+
 import com.uce.edu.service.IHabitacionService;
 import com.uce.edu.service.IHotelService;
 
@@ -48,56 +40,42 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Hotel hotel1 = new Hotel();
-		hotel1.setDireccion("Av. America");
-		hotel1.setNombre("Hola Mundo");
-		
-		Habitacion habi1 = new Habitacion();
-		habi1.setClase("Economica");
-		habi1.setNumero("A1");
-		habi1.setHotel(hotel1);
-		
-		Habitacion habi2 = new Habitacion();
-		habi2.setClase("Presidencial");
-		habi2.setNumero("A2");
-		habi2.setHotel(hotel1);
-		
-		List<Habitacion> habitaciones1 = new ArrayList<>();
-		habitaciones1.add(habi1);
-		habitaciones1.add(habi2);
-		
-		hotel1.setHabitaciones(habitaciones1);
-		
-		this.iHotelService.guardar(hotel1);
-		
-		Hotel hotel2 = new Hotel();
-		
-		Habitacion habi3 = new Habitacion();
-		habi3.setClase("Economica");
-		habi3.setNumero("B1");
-		habi3.setHotel(hotel2);
-		
-		Habitacion habi4 = new Habitacion();
-		habi4.setClase("Economica");
-		habi4.setNumero("A2");
-		habi4.setHotel(hotel2);
-		
-		List<Habitacion> habitaciones2 = new ArrayList<>();
-		habitaciones2.add(habi3);
-		habitaciones2.add(habi4);
-				
-		
-		hotel2.setDireccion("Av. Florida");
-		hotel2.setNombre("Vista del Mar ");
-		hotel2.setHabitaciones(habitaciones2);
-		
-		this.iHotelService.guardar(hotel2);
-		
-		this.iHabitacionService.buscar(5);
-		
-		habi4.setNumero("B2");
-		this.iHabitacionService.actualizar(habi4);
-	
+	    // Crear un hotel
+	    Hotel hotel = new Hotel();
+	    hotel.setNombre("Hotel Ejemplo");
+	    hotel.setDireccion("Dirección del Hotel");
+
+	    // Crear habitaciones y asociarlas al hotel
+	    Habitacion habitacion1 = new Habitacion();
+	    habitacion1.setNumero("101");
+	    habitacion1.setClase("Estandar");
+	    habitacion1.setHotel(hotel);
+
+	    Habitacion habitacion2 = new Habitacion();
+	    habitacion2.setNumero("102");
+	    habitacion2.setClase("Suite");
+	    habitacion2.setHotel(hotel);
+
+	    Habitacion habitacion3 = new Habitacion();
+	    habitacion3.setNumero("103");
+	    habitacion3.setClase("Ejecutiva");
+	    habitacion3.setHotel(hotel);
+
+	    // Crear una lista de habitaciones
+	    List<Habitacion> habitaciones = new ArrayList<>();
+	    habitaciones.add(habitacion1);
+	    habitaciones.add(habitacion2);
+	    habitaciones.add(habitacion3);
+
+	    // Asignar la lista de habitaciones al hotel
+	    hotel.setHabitaciones(habitaciones);
+
+	    // Guardar el hotel y las habitaciones
+	    iHotelService.guardar(hotel);
+	    
+	    Habitacion habitacionParaBorrar = iHabitacionService.buscar(habitacion1.getId());
+	    iHabitacionService.borrar(habitacionParaBorrar.getId());
+	    
 
 	}
 

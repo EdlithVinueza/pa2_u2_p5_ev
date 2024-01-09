@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.repository.IHotelRepository;
-import com.uce.edu.repository.modelo.Alumno;
 import com.uce.edu.repository.modelo.Hotel;
 @Service
 public class HotelServiceImpl implements IHotelService{

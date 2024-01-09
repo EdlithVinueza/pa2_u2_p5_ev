@@ -2,7 +2,6 @@ package com.uce.edu.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Habitacion;
 
 import jakarta.persistence.EntityManager;
