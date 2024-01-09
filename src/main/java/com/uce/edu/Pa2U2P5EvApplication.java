@@ -11,28 +11,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.IAlumnoRepository;
+
 import com.uce.edu.repository.IEmpleadoRepository;
-import com.uce.edu.repository.modelo.Alumno;
+
 import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.repository.modelo.Estudiante;
-import com.uce.edu.repository.modelo.Habitacion;
-import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.service.IAlumnoService;
+
 import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.IEmpleadoService;
-import com.uce.edu.service.IEstudianteService;
-import com.uce.edu.service.IHabitacionService;
-import com.uce.edu.service.IHotelService;
 
 import jakarta.persistence.Id;
 
 @SpringBootApplication
 public class Pa2U2P5EvApplication implements CommandLineRunner {
 
-	@Autowired
-	private IHotelService iHotelService;
+
 	
 	@Autowired 
 	private ICiudadanoService iCiudadanoService;
@@ -40,8 +33,7 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	@Autowired 
 	private IEmpleadoService iEmpleadoService;
 	
-	@Autowired
-	private IHabitacionService iHabitacionService;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EvApplication.class, args);
