@@ -45,8 +45,6 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	@Autowired
 	private ILibroService iLibroService;
 
-	@Autowired
-	private IAutorService iAutorService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EvApplication.class, args);
@@ -55,45 +53,35 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Query");
+		
+		List<Libro>lista=this.iLibroService.buscarPorFecha(LocalDateTime.of(2023, 1,1,7,15));
+		for (Libro libro : lista) {
+			System.out.println(libro);
+		} 
+		
+		System.out.println("TypedQuery");
+		
+		Libro l1 = this.iLibroService.buscarPorTitulo("JAVA");
+		System.out.println(l1);
+		
 
-		// Un libro Con un Autor
-		Libro2 libro = new Libro2();
-		libro.setTitulo("JAVA");
-		libro.setFechaPublicacion(LocalDateTime.now());
+		List<Libro>lista2=this.iLibroService.buscarPorFechaPubli(LocalDateTime.of(2023, 1,1,7,15));
+		for (Libro libro : lista2) {
+			System.out.println(libro);
+		}
 		
-		Autor2 au1 = new Autor2();
-		au1.setNombre("Pedro Perez ");
-		au1.setNacionalidad("Ecuatoriano");
-	
-		Autor2 au2 = new Autor2();
-		au2.setNombre("Daniel Teran");
-		au2.setNacionalidad("Ecuatoriano");
-				
-		List<Autor2> autores1 = new ArrayList<Autor2>();
-		autores1.add(au1);
-		autores1.add(au2);
+		System.out.println("NameQuery");
 		
-		AutorLibro autorLibro1 = new AutorLibro();
-		autorLibro1.setLibro2(libro);
-		autorLibro1.setAutor2(au1);
-		autorLibro1.setFecha(LocalDateTime.now());
+		this.iLibroService.buscarPorTituloNamed("JAVA AVANZADO I");
+		Libro l2 = this.iLibroService.buscarPorTitulo("JAVA");
+		System.out.println(l2);
 		
-		AutorLibro autorLibro2 = new AutorLibro();
-		autorLibro2.setLibro2(libro);
-		autorLibro2.setAutor2(au2);
-		autorLibro2.setFecha(LocalDateTime.now());
-		
-		List<AutorLibro> lista = new ArrayList<AutorLibro>();
-		lista.add(autorLibro1);
-		lista.add(autorLibro2);
-		
-		libro.setLibrosAutores(lista);
-		
-		//this.iLibroService.guardar(libro);
-		
-		Libro libro1 = this.iLibroService.buscarPorNombre("JAVA");
-		
-		System.out.println(libro1);
-			
+
+		List<Libro>lista3=this.iLibroService.bucarPorFechaNamed(LocalDateTime.of(2023, 1,1,7,15));
+		for (Libro libro : lista3) {
+			System.out.println(libro);
+		}
 	}
 }

@@ -1,5 +1,8 @@
 package com.uce.edu.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.repository.modelo.Libro2;
 
@@ -16,5 +19,14 @@ public interface ILibroService {
 	public void borrar(Integer id);
 	
 	public Libro buscarPorNombre(String nombre);
+	
+	public List<Libro> buscarPorFecha(LocalDateTime fecha);
+	
+	public Libro buscarPorTitulo(String titulo);
+	
+	public List<Libro> buscarPorFechaPubli(LocalDateTime fecha);
+	
+	public Libro buscarPorTituloNamed(String titulo);
 
+	public List<Libro> bucarPorFechaNamed(LocalDateTime fechaPublicacion);
 }
