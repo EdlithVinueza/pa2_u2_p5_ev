@@ -43,7 +43,8 @@ import jakarta.persistence.Id;
 public class Pa2U2P5EvApplication implements CommandLineRunner {
 
 	@Autowired
-	private ILibroService iLibroService;
+	private ICiudadanoService iCiudadanoService;
+	
 
 
 	public static void main(String[] args) {
@@ -54,34 +55,31 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Query");
 		
-		List<Libro>lista=this.iLibroService.buscarPorFecha(LocalDateTime.of(2023, 1,1,7,15));
-		for (Libro libro : lista) {
-			System.out.println(libro);
-		} 
+		Ciudadano c1= new Ciudadano();
+		c1.setNombre("Juan");
+		c1.setApellido("Luna");
+		c1.setCedula("1751674027");
 		
-		System.out.println("TypedQuery");
 		
-		Libro l1 = this.iLibroService.buscarPorTitulo("JAVA");
-		System.out.println(l1);
+		Empleado e1 = new Empleado();
 		
+		e1.setFehcaIngreso(LocalDateTime.now());
+		e1.setSalario(new BigDecimal(5000));
+		e1.setCiudadano(c1);
+		
+		c1.setEmpleado(e1);
+		
+		//this.iCiudadanoService.guardar(c1);
+	
+		Empleado e2 = this.iCiudadanoService.buscarPorCedula("1751674027");
+		System.out.println(e2);
+		
+		Ciudadano c2 = this.iCiudadanoService.buscarPorCedulaCiudadano("1751674027");
+		System.out.println(c2);
+		
+		
+	
 
-		List<Libro>lista2=this.iLibroService.buscarPorFechaPubli(LocalDateTime.of(2023, 1,1,7,15));
-		for (Libro libro : lista2) {
-			System.out.println(libro);
-		}
-		
-		System.out.println("NameQuery");
-		
-		this.iLibroService.buscarPorTituloNamed("JAVA AVANZADO I");
-		Libro l2 = this.iLibroService.buscarPorTitulo("JAVA");
-		System.out.println(l2);
-		
-
-		List<Libro>lista3=this.iLibroService.bucarPorFechaNamed(LocalDateTime.of(2023, 1,1,7,15));
-		for (Libro libro : lista3) {
-			System.out.println(libro);
-		}
 	}
 }
