@@ -29,6 +29,9 @@ public class Ciudadano {
 	@Column(name = "ciud_cedula")
 	private String cedula;
 	
+	@Column(name = "ciud_nacionalidad")
+	private String nacionalidad;
+	
 	
 	@OneToOne(mappedBy = "ciudadano",cascade = CascadeType.ALL)
 	private Empleado empleado;

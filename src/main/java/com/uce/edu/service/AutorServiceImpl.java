@@ -1,32 +1,35 @@
 package com.uce.edu.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.repository.IAutorRepository;
 import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Autor2;
 @Service
 public class AutorServiceImpl implements IAutorService{
 	@Autowired
 	private IAutorRepository autorRepository;
 
 	@Override
-	public Autor buscar(Integer id) {
+	public Autor2 buscar(Integer id) {
 		// TODO Auto-generated method stub
 		return this.autorRepository.seleccionar(id);
 	}
 
 	@Override
-	public void guardar(Autor autor) {
+	public void guardar(Autor2 autor2) {
 		// TODO Auto-generated method stub
-		this.autorRepository.insertar(autor);
+		this.autorRepository.insertar(autor2);
 		
 	}
 
 	@Override
-	public void actualizar(Autor autor) {
+	public void actualizar(Autor2 autor2) {
 		// TODO Auto-generated method stub
-		this.autorRepository.actualizar(autor);
+		this.autorRepository.actualizar(autor2);
 		
 	}
 
@@ -35,6 +38,18 @@ public class AutorServiceImpl implements IAutorService{
 		// TODO Auto-generated method stub
 		this.autorRepository.eliminar(id);
 		
+	}
+
+	@Override
+	public List<Autor> buscarPorNacionalidad(String nacionaliad) {
+		// TODO Auto-generated method stub
+		return this.autorRepository.seleccionarPorNacionalidad(nacionaliad);
+	}
+
+	@Override
+	public Autor buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.autorRepository.seleccionarPorNombre(nombre);
 	}
 
 }

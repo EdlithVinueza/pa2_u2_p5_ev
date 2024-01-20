@@ -61,4 +61,12 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		return (Ciudadano)myQuery.getSingleResult();
 	}
 
+	@Override
+	public Ciudadano seleccionarPorNacionaliad(String nacionalidad) {
+		// TODO Auto-generated method stub
+		TypedQuery<Ciudadano>myQuery= this.entityManager.createQuery("SELECT c FROM Ciudadano c WHERE c.nacionalidad = :nacionalidad ", Ciudadano.class);
+		myQuery.setParameter("nacionalidad", nacionalidad);
+		return myQuery.getSingleResult();
+	}
+
 }

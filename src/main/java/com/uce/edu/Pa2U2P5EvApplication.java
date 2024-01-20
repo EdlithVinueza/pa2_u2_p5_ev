@@ -44,6 +44,14 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 
 	@Autowired
 	private ICiudadanoService iCiudadanoService;
+	@Autowired
+	private IAlumnoService iAlumnoService;
+	@Autowired
+	private IAutorService iAutorService;
+	@Autowired
+	private ILibroService iLibroService;
+	@Autowired
+	private IHotelService iHotelService;
 	
 
 
@@ -56,29 +64,20 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		
-		Ciudadano c1= new Ciudadano();
-		c1.setNombre("Juan");
-		c1.setApellido("Luna");
-		c1.setCedula("1751674027");
+    //TypeQuery	
+		this.iCiudadanoService.buscarPorNacionaliad("ecuatoriana");
+		this.iHotelService.buscarEstrellas("5");
+		this.iHotelService.buscarPorDireccion("Bella Vista");
+
+		 
+	//Native Query
+		this.iAlumnoService.seleccionarPorNombre("Edlith Vinueza");
+		this.iAutorService.buscarPorNacionalidad("Ecuatoriano");
+		this.iAutorService.buscarPorNombre("Daniel Teran");
+		this.iLibroService.seleccioanrPorTitulo("JAVA");
+		this.iHotelService.buscarHotelSector("Quito Sur","Bella Vista");
 		
-		
-		Empleado e1 = new Empleado();
-		
-		e1.setFehcaIngreso(LocalDateTime.now());
-		e1.setSalario(new BigDecimal(5000));
-		e1.setCiudadano(c1);
-		
-		c1.setEmpleado(e1);
-		
-		//this.iCiudadanoService.guardar(c1);
 	
-		Empleado e2 = this.iCiudadanoService.buscarPorCedula("1751674027");
-		System.out.println(e2);
-		
-		Ciudadano c2 = this.iCiudadanoService.buscarPorCedulaCiudadano("1751674027");
-		System.out.println(c2);
-		
-		
 	
 
 	}

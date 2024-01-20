@@ -52,4 +52,10 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 		return this.iCiudadanoRepository.seleccionarPorCedulaCiudadano(cedula);
 	}
 
+	@Override
+	public Ciudadano buscarPorNacionaliad(String nacionalidad) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorNacionaliad(nacionalidad);
+	}
+
 }

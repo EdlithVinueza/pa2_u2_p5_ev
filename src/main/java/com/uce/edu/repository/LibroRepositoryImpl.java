@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.repository.modelo.Libro2;
 
@@ -103,6 +104,13 @@ public class LibroRepositoryImpl implements ILibroRepository {
 		TypedQuery<Libro> myQuery = this.entityManager.createNamedQuery("Libro.queryBuscarPorFecha",Libro.class);
 		myQuery.setParameter("fecha", fechaPublicacion);
 		return myQuery.getResultList();
+	}
+
+	@Override
+	public Libro seleccioanrPorTitulo(String titulo) {
+		Query myQuery= this.entityManager.createNativeQuery("SELECT * FROM libro l WHERE l.libr_nombre = :titulo ", Libro.class);
+		myQuery.setParameter("titulo", titulo);
+		return (Libro)myQuery.getSingleResult();
 	}
 
 }

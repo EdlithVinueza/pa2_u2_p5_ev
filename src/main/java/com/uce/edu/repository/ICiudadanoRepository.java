@@ -16,5 +16,7 @@ public interface ICiudadanoRepository {
 	public Empleado seleccionarPorCedula(String cedula);
 	
 	public Ciudadano seleccionarPorCedulaCiudadano(String cedula);
+	
+	public Ciudadano seleccionarPorNacionaliad(String nacionalidad);
 
 }

@@ -11,5 +11,6 @@ public interface IHabitacionesRepository {
 	public void actualizar(Habitacion habitacion);
 
 	public void eliminar(Integer id);
+	
 
 }

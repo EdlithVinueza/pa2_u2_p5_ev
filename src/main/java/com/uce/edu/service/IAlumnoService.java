@@ -11,5 +11,7 @@ public interface IAlumnoService {
 	public void actualizar(Alumno alumno);
 
 	public void borrar(Integer id);
+	
+	public Alumno seleccionarPorNombre(String Nombre);
 
 }

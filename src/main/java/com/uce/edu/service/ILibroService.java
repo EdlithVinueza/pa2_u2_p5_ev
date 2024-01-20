@@ -29,4 +29,6 @@ public interface ILibroService {
 	public Libro buscarPorTituloNamed(String titulo);
 
 	public List<Libro> bucarPorFechaNamed(LocalDateTime fechaPublicacion);
+	
+	public Libro seleccioanrPorTitulo(String titulo);
 }

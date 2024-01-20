@@ -33,6 +33,9 @@ public class Hotel {
 	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL) //Debe copiar exactamente el mismo nombre mapeado en la otra clase, en este caso hotel del atributu private Hotel hotel  
 	private List<Habitacion> habitaciones;
 	
+	@Column(name = "hote_estrellas")
+	private String estrellas;
+	
 	//SET Y GET 
 	public Integer getId() {
 		return id;
