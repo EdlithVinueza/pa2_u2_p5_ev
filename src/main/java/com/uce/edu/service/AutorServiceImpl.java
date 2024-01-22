@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.uce.edu.repository.IAutorRepository;
 import com.uce.edu.repository.modelo.Autor;
 import com.uce.edu.repository.modelo.Autor2;
+import com.uce.edu.repository.modelo.Libro;
 @Service
 public class AutorServiceImpl implements IAutorService{
 	@Autowired
@@ -50,6 +51,12 @@ public class AutorServiceImpl implements IAutorService{
 	public Autor buscarPorNombre(String nombre) {
 		// TODO Auto-generated method stub
 		return this.autorRepository.seleccionarPorNombre(nombre);
+	}
+
+	@Override
+	public List<Libro> buscarLibroPorAutor(String nombreAutor) {
+		// TODO Auto-generated method stub
+		return this.autorRepository.seleccionarLibroPorAutor(nombreAutor);
 	}
 
 }

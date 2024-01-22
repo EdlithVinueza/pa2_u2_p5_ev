@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.uce.edu.repository.modelo.Autor2;
 import com.uce.edu.repository.modelo.Autor;
 import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Libro;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -64,6 +66,14 @@ public class AutorRepositoryImpl implements IAutorRepository{
 		Query myQuery= this.entityManager.createNativeQuery("SELECT * FROM autor a WHERE a.auto_nombre = :nombre ", Autor.class);
 		myQuery.setParameter("nombre", nombre);
 		return (Autor) myQuery.getResultList().get(0);
+	}
+
+	@Override
+	public List<Libro> seleccionarLibroPorAutor(String nombreAutor) {
+		TypedQuery<Libro> myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE :nombreAutor MEMBER OF l.autores", Libro.class);
+        myQuery.setParameter("nombreAutor", nombreAutor);
+        return myQuery.getResultList();
+		
 	}
 
 }

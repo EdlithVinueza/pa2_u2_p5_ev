@@ -65,6 +65,7 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 		
 		
     //TypeQuery	
+		this.iAutorService.buscarLibroPorAutor("Pedro Perez");
 		this.iCiudadanoService.buscarPorNacionaliad("ecuatoriana");
 		this.iHotelService.buscarEstrellas("5");
 		this.iHotelService.buscarPorDireccion("Bella Vista");
