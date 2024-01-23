@@ -102,4 +102,19 @@ public class LibroServiceImpl implements ILibroService {
 		return this.iLibroRepository.seleccioanrPorTitulo(titulo);
 	}
 
+	@Override
+	public List<Libro> buscarLibroPorPalabraClave(String palabraClave) {
+		// TODO Auto-generated method stub
+		return this.iLibroRepository.seleccionarLibroPorPalabraClave(palabraClave);
+	}
+
+
+	@Override
+	public List<Libro> buscarLibrosProgramacionPorAño(LocalDateTime fecha) {
+		// TODO Auto-generated method stub
+		return this.iLibroRepository.seleccionarLibrosProgramacionPorAño(fecha);
+	}
+
+
+	
 }

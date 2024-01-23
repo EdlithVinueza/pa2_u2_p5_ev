@@ -16,4 +16,7 @@ public interface IAutorService {
 	public List<Autor> buscarPorNacionalidad(String nacionaliad);
 	public Autor buscarPorNombre(String nombre);
 	public List<Libro> buscarLibroPorAutor(String nombreAutor);
+	
+	public List<Libro> buscarLibrosPorAutor(String nombreAutor);
+	
 }

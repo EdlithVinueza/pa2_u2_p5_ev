@@ -59,6 +59,12 @@ public class HotelServiceImpl implements IHotelService{
 		return this.iHoteRepository.seleccionarEstrella(nombreStringHotel);
 	}
 
+	@Override
+	public List<Habitacion> buscarHabitacionesDeHotel(String nombreHotel) {
+		// TODO Auto-generated method stub
+		return this.iHoteRepository.seleccioanarHabitacionesDeHotel(nombreHotel);
+	}
+
 
 
 

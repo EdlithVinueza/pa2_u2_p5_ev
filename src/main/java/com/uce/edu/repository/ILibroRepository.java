@@ -32,5 +32,9 @@ public interface ILibroRepository {
 	
 	public Libro seleccioanrPorTitulo(String titulo);
 	
+	
+	public List<Libro>seleccionarLibroPorPalabraClave(String palabraClave);
+	
+	public List<Libro> seleccionarLibrosProgramacionPorAño(LocalDateTime fecha);
 
 }

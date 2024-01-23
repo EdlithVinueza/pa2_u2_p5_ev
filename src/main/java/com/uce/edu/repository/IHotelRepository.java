@@ -21,6 +21,8 @@ public interface IHotelRepository {
 		public Hotel seleccionarPorDireccion(String direccion);
 		
 		public Hotel seleccionarEstrella(String numeroEstrella);
+		
+		public List<Habitacion> seleccioanarHabitacionesDeHotel(String nombreHotel); 
 
 
 }

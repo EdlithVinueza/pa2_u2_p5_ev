@@ -1,5 +1,7 @@
 package com.uce.edu.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,12 @@ public class HabitacionServiceImpl implements IHabitacionService {
 		// TODO Auto-generated method stub
 		this.iHabitacionesRepository.eliminar(id);
 
+	}
+
+	@Override
+	public List<Habitacion> buscarPorClase(String tipoClase) {
+		// TODO Auto-generated method stub
+		return this.iHabitacionesRepository.seleccionarPorClase(tipoClase);
 	}
 
 }

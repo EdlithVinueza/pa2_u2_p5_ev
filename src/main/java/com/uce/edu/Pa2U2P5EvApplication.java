@@ -43,9 +43,17 @@ import jakarta.persistence.Id;
 public class Pa2U2P5EvApplication implements CommandLineRunner {
 
 	@Autowired
-	private ICiudadanoService iCiudadanoService;
-
+	private ILibroService iLibroService;
 	
+	@Autowired
+	private IAutorService iAutorService;
+	
+	@Autowired
+	private IHotelService iHotelService;
+	
+	@Autowired
+	private IHabitacionService iHabitacionService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EvApplication.class, args);
 	}
@@ -53,24 +61,32 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-	
-	Ciudadano ciudadano1 = this.iCiudadanoService.buscarPorApellido("Luna");
-	System.out.println(ciudadano1);
-	
-	Ciudadano ciudadano2 = this.iCiudadanoService.buscarPorCriteria("Juan", "Luna111", "1751674027");
-	System.out.println(ciudadano2);
-
-	Ciudadano ciudadano3 = this.iCiudadanoService.buscarPorCriteria("Juan", "Luna", "051674027");
-	System.out.println(ciudadano3);
-	
-	System.out.println("Criteria API Query AND OR");
-	
-	Ciudadano ciudadano4 = this.iCiudadanoService.buscarPorCriteriaAndOr("Juan", "Luna", "1751674027");
-	System.out.println(ciudadano4);
-	
-	Ciudadano ciudadano5 = this.iCiudadanoService.buscarPorCriteriaAndOr("Juan", "Luna", "0551674027");
-	System.out.println(ciudadano5);
-	
+		
+	//1
+	List<Habitacion> habitacion1 = this.iHabitacionService.buscarPorClase("Estandar");
+	for (Habitacion h:habitacion1) {
+		System.out.println(h);
+	}
+	//2
+	List<Habitacion> habitacion2 = this.iHotelService.buscarHabitacionesDeHotel("Nuevo Nombre del Hotel");
+	for (Habitacion h:habitacion2) {
+		System.out.println(h);
+	}
+	//3
+	List<Libro> libros1 = this.iAutorService.buscarLibrosPorAutor("Pedro Perez"); 	
+	for (Libro l:libros1) {
+		System.out.println(l);
+	}
+	//4
+	List<Libro> libros2 = this.iLibroService.buscarLibrosProgramacionPorAño(LocalDateTime.of(2024, 01, 2, 0, 0));
+	for (Libro l:libros2) {
+		System.out.println(l);
+	}
+	//5
+	List<Libro> libros3 = this.iLibroService.buscarLibroPorPalabraClave("JAVA"); 
+	for (Libro l:libros3) {
+		System.out.println(l);
+	}
 
 	}
 }

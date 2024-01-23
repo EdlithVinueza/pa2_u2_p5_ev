@@ -4,16 +4,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.repository.modelo.Alumno;
-import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Habitacion;
 import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.repository.modelo.Libro;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -73,6 +75,26 @@ public class HotelRepositoryImpl implements IHotelRepository {
 		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h WHERE h.estrellas = :numeroEstrella",Hotel.class);
 		myQuery.setParameter("numeroEstrella", numeroEstrella);
 		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public List<Habitacion> seleccioanarHabitacionesDeHotel(String nombreHotel) {
+		// TODO Auto-generated method stub
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Habitacion> criteriaQuery = criteriaBuilder.createQuery(Habitacion.class);
+        Root<Hotel> hotelRoot = criteriaQuery.from(Hotel.class);
+
+        // Obtener la relación de habitaciones
+        Join<Hotel, Habitacion> habitacionesJoin = hotelRoot.join("habitaciones");
+
+        // Crear la condición para el nombre del hotel
+        Predicate condicionNombreHotel = criteriaBuilder.equal(hotelRoot.get("nombre"), nombreHotel);
+
+        // Aplicar la condición en la consulta
+        criteriaQuery.select(habitacionesJoin).where(condicionNombreHotel);
+
+        TypedQuery<Habitacion> typedQuery = entityManager.createQuery(criteriaQuery);
+        return typedQuery.getResultList();
 	}
 
 

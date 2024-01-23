@@ -20,5 +20,9 @@ public interface IHotelService {
 	public Hotel buscarPorDireccion(String direccion);
 	
 	public Hotel buscarEstrellas(String nombreStringHotel);
+	
+	public List<Habitacion> buscarHabitacionesDeHotel(String nombreHotel);
+	
+	
 
 }

@@ -59,4 +59,10 @@ public class AutorServiceImpl implements IAutorService{
 		return this.autorRepository.seleccionarLibroPorAutor(nombreAutor);
 	}
 
+	@Override
+	public List<Libro> buscarLibrosPorAutor(String nombreAutor) {
+		// TODO Auto-generated method stub
+		return this.autorRepository.seleccionarLibrosPorAutor(nombreAutor);
+	}
+
 }

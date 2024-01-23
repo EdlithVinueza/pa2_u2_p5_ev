@@ -14,4 +14,6 @@ public interface IAutorRepository {
 	public List<Autor> seleccionarPorNacionalidad(String nacionaliad);
 	public Autor seleccionarPorNombre(String nombre);
 	public List<Libro> seleccionarLibroPorAutor(String nombreAutor);
+	
+	public List<Libro> seleccionarLibrosPorAutor(String nombreAutor);
 }

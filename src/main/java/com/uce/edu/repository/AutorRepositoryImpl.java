@@ -2,18 +2,21 @@ package com.uce.edu.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.repository.modelo.Autor2;
 import com.uce.edu.repository.modelo.Autor;
-import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Autor2;
 import com.uce.edu.repository.modelo.Libro;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -74,6 +77,26 @@ public class AutorRepositoryImpl implements IAutorRepository{
         myQuery.setParameter("nombreAutor", nombreAutor);
         return myQuery.getResultList();
 		
+	}
+
+	@Override
+	public List<Libro> seleccionarLibrosPorAutor(String nombreAutor) {
+		// TODO Auto-generated method stub
+		CriteriaBuilder myCriterianBuilder = this.entityManager.getCriteriaBuilder();
+	    CriteriaQuery<Libro> myCriteriaQuery = myCriterianBuilder.createQuery(Libro.class);
+	    Root<Libro> myFrom = myCriteriaQuery.from(Libro.class);
+
+	    // Obtener la relación de autores
+	    Join<Libro, Autor> autoresJoin = myFrom.join("autores");
+
+	    // Crear la condición para el nombre del autor
+	    Predicate condicionAutor = myCriterianBuilder.equal(autoresJoin.get("nombre"), nombreAutor);
+
+	    myCriteriaQuery.select(myFrom).where(condicionAutor);
+
+	    TypedQuery<Libro> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+	    return myTypedQuery.getResultList();
 	}
 
 }
