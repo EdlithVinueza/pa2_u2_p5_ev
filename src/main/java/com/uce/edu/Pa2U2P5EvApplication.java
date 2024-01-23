@@ -44,17 +44,8 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 
 	@Autowired
 	private ICiudadanoService iCiudadanoService;
-	@Autowired
-	private IAlumnoService iAlumnoService;
-	@Autowired
-	private IAutorService iAutorService;
-	@Autowired
-	private ILibroService iLibroService;
-	@Autowired
-	private IHotelService iHotelService;
+
 	
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EvApplication.class, args);
 	}
@@ -62,23 +53,23 @@ public class Pa2U2P5EvApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		
-    //TypeQuery	
-		this.iAutorService.buscarLibroPorAutor("Pedro Perez");
-		this.iCiudadanoService.buscarPorNacionaliad("ecuatoriana");
-		this.iHotelService.buscarEstrellas("5");
-		this.iHotelService.buscarPorDireccion("Bella Vista");
-
-		 
-	//Native Query
-		this.iAlumnoService.seleccionarPorNombre("Edlith Vinueza");
-		this.iAutorService.buscarPorNacionalidad("Ecuatoriano");
-		this.iAutorService.buscarPorNombre("Daniel Teran");
-		this.iLibroService.seleccioanrPorTitulo("JAVA");
-		this.iHotelService.buscarHotelSector("Quito Sur","Bella Vista");
-		
 	
+	Ciudadano ciudadano1 = this.iCiudadanoService.buscarPorApellido("Luna");
+	System.out.println(ciudadano1);
+	
+	Ciudadano ciudadano2 = this.iCiudadanoService.buscarPorCriteria("Juan", "Luna111", "1751674027");
+	System.out.println(ciudadano2);
+
+	Ciudadano ciudadano3 = this.iCiudadanoService.buscarPorCriteria("Juan", "Luna", "051674027");
+	System.out.println(ciudadano3);
+	
+	System.out.println("Criteria API Query AND OR");
+	
+	Ciudadano ciudadano4 = this.iCiudadanoService.buscarPorCriteriaAndOr("Juan", "Luna", "1751674027");
+	System.out.println(ciudadano4);
+	
+	Ciudadano ciudadano5 = this.iCiudadanoService.buscarPorCriteriaAndOr("Juan", "Luna", "0551674027");
+	System.out.println(ciudadano5);
 	
 
 	}
